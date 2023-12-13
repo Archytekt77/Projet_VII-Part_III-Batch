@@ -10,7 +10,8 @@ import java.util.List;
 @Component
 public class ApiReader implements ItemReader<List<String>> {
 
-    private final ApiProxy apiProxy;
+    @Autowired
+    ApiProxy apiProxy;
 
     @Autowired
     public ApiReader(ApiProxy apiProxy) {
