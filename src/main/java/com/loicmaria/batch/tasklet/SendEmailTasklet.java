@@ -1,5 +1,7 @@
 package com.loicmaria.batch.tasklet;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
@@ -21,12 +23,20 @@ public class SendEmailTasklet implements Tasklet {
     @Autowired
     private ApiProxy apiProxy;
 
+    private static final Logger logger = LogManager.getLogger(SendEmailTasklet.class);
+
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext){
+        logger.info("Début de l'envoi des e-mails.");
+
         List<String> emails = apiProxy.getExpiredBookings();
         for (String email : emails) {
             sendEmail(email);
         }
+
+        logger.info("Nombre d'e-mails envoyés : " + emails.size());
+        logger.info("Fin de l'envoi des e-mails.");
+
         return RepeatStatus.FINISHED;
     }
 

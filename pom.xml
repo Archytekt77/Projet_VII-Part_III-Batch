@@ -19,6 +19,7 @@
         <java.version>11</java.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
         <spring-batch.version>4.3.3</spring-batch.version>
+        <log4j2.version>2.22.0</log4j2.version>
     </properties>
 
 
@@ -36,6 +37,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j2.version}</version>
         </dependency>
 
         <dependency>
